@@ -38,12 +38,27 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <hello-world/>
+      <creation-dialog
+        v-model="showCreationDialog"
+        @onAddItem="addNewItem($event)"/>
+      <v-btn
+        fixed
+        dark
+        fab
+        bottom
+        right
+        color="pink"
+        @click="showCreationDialog = !showCreationDialog"
+      >
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import CreationDialog from './components/CreationDialog';
 import HelloWorld from './components/HelloWorld';
 
 export default {
@@ -51,10 +66,19 @@ export default {
 
   components: {
     HelloWorld,
+    CreationDialog,
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      showCreationDialog: false,
+    }
+  },
+
+  methods: {
+    addNewItem(itemText) {
+      console.log("### add new item: " + itemText);
+    }
+  }
 };
 </script>
