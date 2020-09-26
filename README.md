@@ -1,24 +1,24 @@
 # incrementr
 
-## Project setup
-```
-npm install
-```
+## Commands
+* Project setup:
+  * `npm install`
+* Compile and hot-reload for development:
+  * `npm run serve`
+* Lints and fixes files:
+  * `npm run lint`
+* Compiles, minifies, and deploys to github pages:
+  * `npm run deploy`
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## TODOs
+* app functionality
+  * rearrange task
+  * edit task title
+  * show current date
+  * date rollover
+  * stats
+  * gamifaction / dopamine
+* auth: firebase (google sso)
+* persistence: firestore
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

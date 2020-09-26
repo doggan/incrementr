@@ -19,8 +19,6 @@
               <v-btn icon color="pink" @click="adjustCount(item, 1)">
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
-                            <!-- @keyup.enter="doneEdit(todo)"
-                  @keyup.esc="cancelEdit(todo)" -->
               </li>
             </ul>
           </v-col>
@@ -64,21 +62,18 @@ export default {
   data() {
     return {
       showCreationDialog: false,
+    }
+  },
 
-      // TODO(shyam): move to a component and expose API?
-      items: [],
+  computed: {
+    items() {
+      return this.$store.getters.items;
     }
   },
 
   methods: {
     addItem(title) {
-      console.log("### add new item: " + title);
-
-      this.items.push({
-        id: this.items.length,
-        title: title,
-        count: 0,
-      });
+      this.$store.dispatch('addItem', title);
     },
 
     adjustCount(item, deltaCount) {
