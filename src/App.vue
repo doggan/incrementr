@@ -1,47 +1,35 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
     <v-main>
-      <hello-world/>
+
+      <!-- TODO(shyam): move to component -->
+      <v-container>
+        <v-row class="text-center">
+          <v-col class="mb-4">
+            <ul class="todo-list">
+              <li
+                v-for="item in items"
+                class="todo"
+                :key="item.id"
+              >
+              {{ item.count }} - {{ item.title }}
+              <v-btn icon color="pink" @click="adjustCount(item, -1)">
+                <v-icon>mdi-minus</v-icon>
+              </v-btn>
+              <v-btn icon color="pink" @click="adjustCount(item, 1)">
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+                            <!-- @keyup.enter="doneEdit(todo)"
+                  @keyup.esc="cancelEdit(todo)" -->
+              </li>
+            </ul>
+          </v-col>
+        </v-row>
+      </v-container>
+
       <creation-dialog
         v-model="showCreationDialog"
-        @onAddItem="addNewItem($event)"/>
+        @onAddItem="addItem($event)"/>
       <v-btn
         fixed
         dark
@@ -59,25 +47,42 @@
 
 <script>
 import CreationDialog from './components/CreationDialog';
-import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
     CreationDialog,
+  },
+
+  mounted: function() {
+    this.addItem("push-ups");
+    this.addItem("sit-ups");
+    this.addItem("back crunches");
   },
 
   data() {
     return {
       showCreationDialog: false,
+
+      // TODO(shyam): move to a component and expose API?
+      items: [],
     }
   },
 
   methods: {
-    addNewItem(itemText) {
-      console.log("### add new item: " + itemText);
+    addItem(title) {
+      console.log("### add new item: " + title);
+
+      this.items.push({
+        id: this.items.length,
+        title: title,
+        count: 0,
+      });
+    },
+
+    adjustCount(item, deltaCount) {
+      item.count += deltaCount;
     }
   }
 };

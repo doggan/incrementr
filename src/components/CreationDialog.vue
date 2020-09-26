@@ -48,6 +48,8 @@
         return this.textValue.length > 0;
       }
     },
+
+    // TODO(shyam): trim textValue so there are no trailing spaces, etc.
     
     data() {
       return {
