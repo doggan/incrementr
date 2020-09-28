@@ -12,28 +12,16 @@
         <v-row class="text-center no-gutters">
           <v-col sm="8" offset-sm="2">
             <draggable
-              :list="items"
+              v-model="items"
+              v-bind="dragOptions"
               class="item-list"
               ghost-class="ghost"
             >
-              <div class="item-list-element" v-for="item in items" :key="item.id">
-                <v-row>
-                  <v-col cols="8">
-                    <span class="item-text">{{ item.text }}</span>
-                  </v-col><v-col cols="2">
-                    <span class="item-count">{{ item.count }}</span>
-                  </v-col><v-col cols="2">
-                    <span class="item-adjust">
-                      <v-btn icon color="pink" @click="adjustCount(item, -1)">
-                        <v-icon>mdi-minus</v-icon>
-                      </v-btn>
-                      <v-btn icon color="pink" @click="adjustCount(item, 1)">
-                        <v-icon>mdi-plus</v-icon>
-                      </v-btn>
-                    </span>
-                  </v-col>
-                </v-row>
-              </div>
+              <transition-group type="transition">
+                <div v-for="item in items" :key="item.id">
+                  <item-element class="item-list-element" v-bind:item="item"/>
+                </div>
+              </transition-group>
             </draggable>
           </v-col>
         </v-row>
@@ -59,6 +47,7 @@
 
 <script>
 import CreationDialog from './components/CreationDialog';
+import ItemElement from './components/ItemElement';
 import TimeDisplay from './components/TimeDisplay';
 import draggable from 'vuedraggable';
 
@@ -67,6 +56,7 @@ export default {
 
   components: {
     CreationDialog,
+    ItemElement,
     TimeDisplay,
     draggable,
   },
@@ -76,6 +66,9 @@ export default {
     this.addItem("push-ups");
     this.addItem("sit-ups");
     this.addItem("back crunches");
+    this.addItem("jumping jacks");
+    this.addItem("burpees");
+    this.addItem("lunges");
   },
 
   data() {
@@ -92,6 +85,15 @@ export default {
       set: function(items) {
         this.$store.dispatch('updateItems', items);
       }
+    },
+
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
     }
   },
 
@@ -111,11 +113,19 @@ export default {
 .item-list-element {
   border-style: solid;
   border-width: 1px;
-  border-color: red;
+  border-color: black;
+  border-top: none;
 }
 
 .ghost {
   opacity: 0.5;
   background: #c8ebfb;
+}
+
+.item-list-element {
+  cursor: move;
+}
+.item-list-element i {
+  cursor: pointer;
 }
 </style> 
