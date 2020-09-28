@@ -24,49 +24,49 @@
 </template>
 
 <script>
-  export default {
-    name: 'creation-dialog',
+export default {
+  name: 'creation-dialog',
 
-    props: {
-      value: {
-        type: Boolean,
-        required: true,
-      }
-    },
-
-    computed: {
-      isVisible: {
-        get () {
-          return this.value;
-        },
-        set (value) {
-          this.$emit('input', value);
-        }
-      },
-
-      isAddEnabled: function() {
-        return this.textValue.length > 0;
-      }
-    },
-
-    // TODO(shyam): trim textValue so there are no trailing spaces, etc.
-    
-    data() {
-      return {
-        textValue: "",
-      }
-    },
-
-    methods: {
-      onAdd() {
-        this.$emit('onAddItem', this.textValue);
-        this.onCancel();
-      },
-
-      onCancel() {
-        this.isVisible = false;
-        this.textValue = "";
-      },
+  props: {
+    value: {
+      type: Boolean,
+      required: true,
     }
+  },
+
+  computed: {
+    isVisible: {
+      get () {
+        return this.value;
+      },
+      set (value) {
+        this.$emit('input', value);
+      }
+    },
+
+    isAddEnabled: function() {
+      return this.textValue.length > 0;
+    }
+  },
+
+  // TODO(shyam): trim textValue so there are no trailing spaces, etc.
+  
+  data() {
+    return {
+      textValue: "",
+    }
+  },
+
+  methods: {
+    onAdd() {
+      this.$emit('onAddItem', this.textValue);
+      this.onCancel();
+    },
+
+    onCancel() {
+      this.isVisible = false;
+      this.textValue = "";
+    },
   }
+}
 </script>

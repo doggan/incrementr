@@ -15,18 +15,26 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    ADD_ITEM(state, text) {
+    ADD_ITEM(state, payload) {
       state.items.push({
         id: state.items.length,
-        title: text,
+        text: payload,
         count: 0,
       });
     },
+
+    UPDATE_ITEMS(state, payload) {
+      state.items = payload;
+    }
   },
 
   actions: {
-    addItem(context, text) {
-      context.commit("ADD_ITEM", text);
+    addItem({commit}, payload) {
+      commit("ADD_ITEM", payload);
+    },
+
+    updateItems({commit}, payload) {
+      commit("UPDATE_ITEMS", payload);
     }
   }
 });

@@ -12,9 +12,7 @@
 
 ## TODOs
 * app functionality
-  * rearrange task
   * edit task title
-  * show current date
   * date rollover
   * stats
   * gamifaction / dopamine
