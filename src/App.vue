@@ -16,6 +16,7 @@
               v-bind="dragOptions"
               class="item-list"
               ghost-class="ghost"
+              handle=".handle"
             >
               <transition-group type="transition">
                 <div v-for="item in items" :key="item.id">
@@ -116,12 +117,5 @@ export default {
 .ghost {
   opacity: 0.5;
   background: #c8ebfb;
-}
-
-.item-list-element {
-  cursor: move;
-}
-.item-list-element i {
-  cursor: pointer;
 }
 </style> 

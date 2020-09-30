@@ -2,6 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="8">
+        <v-icon class="handle">mdi-drag-horizontal-variant</v-icon>
         <span class="item-text">{{ item.text }}</span>
       </v-col><v-col cols="2">
         <span class="item-count">{{ item.count }}</span>
@@ -36,3 +37,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.handle {
+  float: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  cursor: move;
+}
+</style>
