@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.7405c0bffa60133bbfdbedab75e3e2c3.js"
+  "precache-manifest.0cc3b9bf10d1d4acd2120e1e4af2b87f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "incrementr"});
