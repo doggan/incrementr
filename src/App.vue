@@ -101,10 +101,6 @@ export default {
     addItem(text) {
       this.$store.dispatch('addItem', text);
     },
-
-    adjustCount(item, deltaCount) {
-      item.count += deltaCount;
-    }
   }
 };
 </script>

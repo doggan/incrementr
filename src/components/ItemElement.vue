@@ -28,5 +28,11 @@ export default {
       required: true,
     }
   },
+
+  methods: {
+    adjustCount(item, deltaCount) {
+      item.count += deltaCount;
+    }
+  },
 };
 </script>
